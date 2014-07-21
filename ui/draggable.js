@@ -714,7 +714,9 @@ $.ui.plugin.add("draggable", "connectToSortable", {
 						this.instance._intersectsWith(this.instance.containerCache) &&
 						$.contains(thisSortable.instance.element[0], this.instance.element[0])
 					) {
-						innermostIntersecting = false;
+			            if ($.contains(thisSortable.instance.element[0], this.instance.element[0])) innermostIntersecting = false;
+            			var margin = inst.positionAbs.left - this.instance.containerCache.left;
+			            if (margin > 0 && margin < inst.positionAbs.left - thisSortable.instance.containerCache.left) innermostIntersecting = false;
 					}
 					return innermostIntersecting;
 				});
